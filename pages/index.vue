@@ -19,6 +19,7 @@
         >
           GitHub
         </a>
+        <button @click="callApi">Call API</button>
       </div>
     </div>
   </div>
@@ -30,6 +31,19 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  methods: {
+    callApi: () => {
+      // eslint-disable-next-line no-console
+      console.log('Mounted called me')
+      // eslint-disable-next-line no-console
+      console.log(process.env.API_BASE_URL)
+
+      fetch(process.env.API_BASE_URL + 'ping').then(async (data) => {
+        const res = await data.json()
+        alert(res.status)
+      })
+    }
   }
 }
 </script>
